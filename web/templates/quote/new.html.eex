@@ -1,0 +1,6 @@
+<h2>New quote</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: quote_path(@conn, :create) %>
+
+<%= link "Back", to: quote_path(@conn, :index) %>
