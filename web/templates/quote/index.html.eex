@@ -1,28 +1,30 @@
-<table>
-  <thead>
+<div class="page-content col-xs-10 col-xs-offset-1">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Saying</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </thead>
+    <%= for quote <- @quotes do %>
     <tr>
-      <th>Saying</th>
-      <th>Author</th>
-      <th>Actions</th>
-  </thead>
-  <%= for quote <- @quotes do %>
-  <tr>
-    <td>
-      <a href="<%= quote_path(@conn, :show, quote.id) %>">
-        <%= quote.saying %>
-      </a>
-    </td>
-    <td>
-      <%= quote.author %>
-    </td>
-    <td>
-      <a href="<%= quote_path(@conn, :edit, quote.id) %>">
-        Edit
-      </a>
-      |
-      <%= link "Delete", to: quote_path(@conn, :delete, quote), method: :delete, data: [confirm: "Are you sure?"] %>
-    </td>
-  </tr>
-  <% end %>
+      <td>
+        <a href="<%= quote_path(@conn, :show, quote.id) %>">
+          <%= quote.saying %>
+        </a>
+      </td>
+      <td>
+        <%= quote.author %>
+      </td>
+      <td>
+        <a href="<%= quote_path(@conn, :edit, quote.id) %>" class="btn btn-danger">
+          Edit
+        </a>
+        |
+        <%= link "Delete", to: quote_path(@conn, :delete, quote), method: :delete, data: [confirm: "Are you sure?"], class: "rest btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
 
-</table>
+  </table>
+</div>

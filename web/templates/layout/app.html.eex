@@ -9,19 +9,25 @@
 
     <title>Hello Thefirehoseproject!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+    <header class="header">
+      <div class="col-xs-6">
+        <a href="http://phoenix.thefirehoseproject.com/">
+          A hands-on intro to building modern web applications with Elixir and Phoenix
+        </a>
+      </div>
 
+      <div class="col-xs-6 text-right">
+        <a href="https://github.com/MaximeD/thefirehoseproject">
+          See on github
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
