@@ -34,4 +34,10 @@ defmodule Thefirehoseproject.QuoteController do
         render(conn, "new.html", changeset: changeset)
     end
   end
+
+  # `GET /quotes/:id`: show a quote
+  def show(conn, %{"id" => id}) do
+    quote = Repo.get!(Quote, id)
+    render(conn, "show.html", quote: quote)
+  end
 end
