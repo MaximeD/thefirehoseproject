@@ -3,6 +3,7 @@
     <tr>
       <th>Saying</th>
       <th>Author</th>
+      <th>Actions</th>
   </thead>
   <%= for quote <- @quotes do %>
   <tr>
@@ -13,6 +14,11 @@
     </td>
     <td>
       <%= quote.author %>
+    </td>
+    <td>
+      <a href="<%= quote_path(@conn, :edit, quote.id) %>">
+        Edit
+      </a>
     </td>
   </tr>
   <% end %>

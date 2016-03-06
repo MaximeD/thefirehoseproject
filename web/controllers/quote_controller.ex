@@ -40,4 +40,26 @@ defmodule Thefirehoseproject.QuoteController do
     quote = Repo.get!(Quote, id)
     render(conn, "show.html", quote: quote)
   end
+
+  # `GET /quotes/:id/edit`: renders form to edit a given quote
+  def edit(conn, %{"id" => id}) do
+    quote = Repo.get!(Quote, id)
+    changeset = Quote.changeset(quote)
+    render(conn, "edit.html", quote: quote, changeset: changeset)
+  end
+
+  # `PUT /quotes/:id/`: updates a given quote
+  def update(conn, %{"id" => id, "quote" => quote_params}) do
+    quote = Repo.get!(Quote, id)
+    changeset = Quote.changeset(quote, quote_params)
+
+    case Repo.update(changeset) do
+      {:ok, quote} ->
+        conn
+        |> put_flash(:info, "Quote updated successfully.")
+        |> redirect(to: quote_path(conn, :show, quote))
+      {:error, changeset} ->
+        render(conn, "edit.html", quote: quote, changeset: changeset)
+    end
+  end
 end
