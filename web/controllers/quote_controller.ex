@@ -4,9 +4,10 @@ defmodule Thefirehoseproject.QuoteController do
 
   plug :scrub_params, "quote" when action in [:create, :update]
 
-  # `GET /`
+  # `GET /`: shows a randow quote
   def homepage(conn, _params) do
-    render conn, "homepage.html"
+    quote = Quote.Queries.random
+    render(conn, "show.html", quote: quote)
   end
 
   # `GET /quotes`: renders list of quotes

@@ -21,4 +21,16 @@ defmodule Thefirehoseproject.Quote do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  defmodule Queries do
+    def random do
+      query = Ecto.Adapters.SQL.query(
+        Thefirehoseproject.Repo,
+        "SELECT id, saying, author from quotes ORDER BY RANDOM() LIMIT 1",
+        [])
+      {:ok, %{rows: [row]}} = query
+      [id, saying, author] = row
+      %Thefirehoseproject.Quote{id: id, saying: saying, author: author}
+    end
+  end
 end
