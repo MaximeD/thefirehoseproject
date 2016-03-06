@@ -62,4 +62,15 @@ defmodule Thefirehoseproject.QuoteController do
         render(conn, "edit.html", quote: quote, changeset: changeset)
     end
   end
+
+  # `DELETE /quotes/:id/`: deletes a given quote
+  def delete(conn, %{"id" => id}) do
+    quote = Repo.get!(Quote, id)
+
+    Repo.delete!(quote)
+
+    conn
+    |> put_flash(:info, "Quote deleted successfully.")
+    |> redirect(to: quote_path(conn, :index))
+  end
 end

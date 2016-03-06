@@ -19,6 +19,8 @@
       <a href="<%= quote_path(@conn, :edit, quote.id) %>">
         Edit
       </a>
+      |
+      <%= link "Delete", to: quote_path(@conn, :delete, quote), method: :delete, data: [confirm: "Are you sure?"] %>
     </td>
   </tr>
   <% end %>
